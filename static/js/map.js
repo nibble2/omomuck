@@ -130,7 +130,7 @@
             itemStr += '    <span>' +  places.address_name  + '</span>';
         }
 
-          itemStr += '  <span class="tel">' + places.phone  + '</span>' +
+          itemStr += '  <span class="tel">' + places.phone  + '</span>' + '<span class="test">테스트</span>' +
                     '</div>';
 
         el.innerHTML = itemStr;
