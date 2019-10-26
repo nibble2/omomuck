@@ -8,7 +8,6 @@ app = Flask(__name__)
 # database 에 접근
 # database 를 사용하기 위한 cursor 를 세팅합니다.
 
-
 @app.route('/')
 def home():
     return render_template('map.html', map_key=config.API_KEY['kakao_map_api'])
@@ -54,4 +53,4 @@ def listing():
 
 
 if __name__ == '__main__':
-    app.run('localhost', port=5000, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)
