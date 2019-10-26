@@ -115,28 +115,53 @@
         map.setBounds(bounds);
     }
 
-    // 검색결과 항목을 Element로 반환하는 함수입니다
+     // 검색결과 항목을 Element로 반환하는 함수입니다
     function getListItem(index, places) {
 
         var el = document.createElement('li'),
         itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                     '<div class="info">' +
-                    '   <h5>' + places.place_name + '</h5>';
+                    '   <h5 id="places_name'+(index+1)+'">' + places.place_name + '</h5>';
 
         if (places.road_address_name) {
-            itemStr += '    <span>' + places.road_address_name + '</span>' +
+            itemStr += '    <span id="road_address'+(index+1)+'">' + places.road_address_name + '</span>' +
                         '   <span class="jibun gray">' +  places.address_name  + '</span>';
         } else {
             itemStr += '    <span>' +  places.address_name  + '</span>';
         }
 
-          itemStr += '  <span class="tel">' + places.phone  + '</span>' + '<span class="test">테스트</span>' +
+          itemStr += '  <span id="tel'+(index+1)+'">' + places.phone  + '</span>' +
+                    '<button type="submit" class="check" onclick="saving('+places.y+','+places.x+','+index+')">찜하기</button>'
                     '</div>';
 
         el.innerHTML = itemStr;
         el.className = 'item';
 
         return el;
+    }
+
+    function saving(y,x,index){
+        let author = 'omomuck'
+        let store = $('#places_name'+(index+1)).text();
+        let address = $('#road_address'+(index+1)).text();
+        let tel = $('#tel'+(index+1)).text();
+        let lat = x;
+        let lng = y;
+
+        console.log(store);
+        console.log(address);
+        console.log(tel);
+        console.log(lat);
+        console.log(lng);
+
+        $.ajax({
+            type:"POST",
+            url:"/map",
+            data:{author_give: author, store_give:store, address_give:address, tel_give:tel, lat_give:lat, lng_give:lng},
+            success: function(response){
+                console.log(response);
+            }
+        })
     }
 
     // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다

@@ -20,22 +20,23 @@ def myList():
 
 @app.route('/map', methods=['POST'])
 def saving():
-    name_receive = request.form['name_give']  # 가게 명
+    author_receive = request.form['author_give']
+    store_receive = request.form['store_give']  # 가게 명
     address_receive = request.form['address_give']  # 가게 주소
     tel_receive = request.form['tel_give']  # 가게 전화번호
     lat_receive = request.form['lat_give']  # 위도
     lng_receive = request.form['lng_give']  # 경도
     db = pymysql.connect(host='localhost',
                          port=3306,
-                         user='omomuck',
+                         user='root',
                          passwd='1234',
                          db='omomuck',
                          charset='utf8')
     try:
         with db.cursor() as cursor:
             # Create a new record
-            sql = "INSERT IGNORE INTO mylist(name, address,tel,lat,lng) VALUES (%s, %s, %s, %s, %s)"
-            cursor.execute(sql, (name_receive, address_receive, tel_receive, lat_receive, lng_receive))
+            sql = "INSERT IGNORE INTO mylist(author, store, address, tel, lat, lng) VALUES (%s, %s, %s, %s, %s, %s)"
+            cursor.execute(sql, (author_receive, store_receive, address_receive, tel_receive, lat_receive, lng_receive))
 
         # connection is not autocommit by default. So you must commit to save
         # your changes.
@@ -53,4 +54,4 @@ def listing():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=5001, debug=True)
