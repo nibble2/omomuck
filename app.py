@@ -8,6 +8,7 @@ app = Flask(__name__)
 # database 에 접근
 # database 를 사용하기 위한 cursor 를 세팅합니다.
 
+
 @app.route('/')
 def home():
     return render_template('map.html', map_key=config.API_KEY['kakao_map_api'])
@@ -49,8 +50,24 @@ def saving():
 
 @app.route('/map', methods=['GET'])
 def listing():
-    name_receive = request.args.get('name_give')
-    return jsonify({'result': 'success', 'msg': '이 요청은 GET!'})
+    name_give = request.args.get('name_give')
+    db = pymysql.connect(host='localhost',
+                         port=3306,
+                         user='root',
+                         passwd='1234',
+                         db='omomuck',
+                         charset='utf8')
+    try:
+        with db.cursor(pymysql.cursors.DictCursor) as cursor:
+            # Create a new record
+            sql = "SELECT * FROM mylist"
+            cursor.execute(sql)
+            rows = cursor.fetchall()
+        # connection is not autocommit by default. So you must commit to save
+        # your changes.
+    finally:
+        db.close()
+        return jsonify({'result': 'success', 'rows': rows})
 
 
 if __name__ == '__main__':
