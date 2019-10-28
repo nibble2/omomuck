@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
+
 # database 에 접근
 # database 를 사용하기 위한 cursor 를 세팅합니다.
 
@@ -42,7 +43,6 @@ def saving():
         # connection is not autocommit by default. So you must commit to save
         # your changes.
         db.commit()
-        print(cursor.lastrowid)
     finally:
         db.close()
     return jsonify({'result': 'success', 'msg': '이 요청은 POST!'})
@@ -50,7 +50,6 @@ def saving():
 
 @app.route('/map', methods=['GET'])
 def listing():
-    name_give = request.args.get('name_give')
     db = pymysql.connect(host='localhost',
                          port=3306,
                          user='root',
@@ -68,6 +67,28 @@ def listing():
     finally:
         db.close()
         return jsonify({'result': 'success', 'rows': rows})
+
+
+@app.route('/delete', methods=['POST'])
+def deleting():
+    store_give = request.args.get('store_give')
+    db = pymysql.connect(host='localhost',
+                         port=3306,
+                         user='root',
+                         passwd='1234',
+                         db='omomuck',
+                         charset='utf8')
+    try:
+        with db.cursor() as cursor:
+            # Create a new record
+            sql = "DELETE FROM mylist WHERE store = %s"
+            cursor.execute(sql, store_give)
+            db.commit()
+        # connection is not autocommit by default. So you must commit to save
+        # your changes.
+    finally:
+        db.close()
+        return jsonify({'result': 'success', 'msg': '이 요청은 POST!'})
 
 
 if __name__ == '__main__':
