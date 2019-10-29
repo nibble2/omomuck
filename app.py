@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('map.html', map_key=config.API_KEY['kakao_map_api'])
+    return render_template('food-search.html', map_key=config.API_KEY['kakao_map_api'])
 
 
 @app.route('/list')
@@ -18,7 +18,7 @@ def myList():
     return render_template('mylist.html', map_key=config.API_KEY['kakao_map_api'])
 
 
-@app.route('/map', methods=['POST'])
+@app.route('/food-search', methods=['POST'])
 def saving():
     author_receive = request.form['author_give']
     store_receive = request.form['store_give']  # 가게 명
@@ -47,7 +47,7 @@ def saving():
     return jsonify({'result': 'success', 'msg': '이 요청은 POST!'})
 
 
-@app.route('/map', methods=['GET'])
+@app.route('/food-search', methods=['GET'])
 def listing():
     name_receive = request.args.get('name_give')
     return jsonify({'result': 'success', 'msg': '이 요청은 GET!'})
