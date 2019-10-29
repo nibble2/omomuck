@@ -1,7 +1,7 @@
 venv/
 .idea/
-config.py
 /static/js
 /static/css
 /static/images
 /static/fonts
+config.py
