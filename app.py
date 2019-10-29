@@ -20,7 +20,7 @@ def myList():
 
 @app.route('/map', methods=['POST'])
 def saving():
-    author_receive = request.form['author_give']
+    author_receive = request.form['author_give'] # 작성자
     store_receive = request.form['store_give']  # 가게 명
     address_receive = request.form['address_give']  # 가게 주소
     tel_receive = request.form['tel_give']  # 가게 전화번호
