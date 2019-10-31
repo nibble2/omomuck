@@ -17,8 +17,8 @@ def home():
 def myList():
     return render_template('mylist.html', map_key=config.API_KEY['kakao_map_api'])
 
-
-@app.route('/food-search', methods=['POST'])
+# 찜하기 API
+@app.route('/map', methods=['POST'])
 def saving():
     author_receive = request.form['author_give']
     store_receive = request.form['store_give']  # 가게 명
@@ -47,7 +47,8 @@ def saving():
     return jsonify({'result': 'success', 'msg': '이 요청은 POST!'})
 
 
-@app.route('/food-search', methods=['GET'])
+# 찜한 리스트 불러오기 API
+@app.route('/map', methods=['GET'])
 def listing():
     name_receive = request.args.get('name_give')
     return jsonify({'result': 'success', 'msg': '이 요청은 GET!'})
