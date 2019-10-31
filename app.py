@@ -26,16 +26,16 @@ def saving():
     tel_receive = request.form['tel_give']  # 가게 전화번호
     lat_receive = request.form['lat_give']  # 위도
     lng_receive = request.form['lng_give']  # 경도
-    db = pymysql.connect(host='localhost',
-                         port=3306,
-                         user='root',
-                         passwd='1234',
-                         db='omomuck',
+    db = pymysql.connect(host=config.DB_CONFIG['stores_host'],
+                         port=config.DB_CONFIG['stores_port'],
+                         user=config.DB_CONFIG['stores_user'],
+                         passwd=config.DB_CONFIG['stores_passwd'],
+                         db=config.DB_CONFIG['stores_db'],
                          charset='utf8')
     try:
         with db.cursor() as cursor:
             # Create a new record
-            sql = "INSERT IGNORE INTO mylist(author, store, address, tel, lat, lng) VALUES (%s, %s, %s, %s, %s, %s)"
+            sql = "INSERT IGNORE INTO stores(author, store, address, tel, lat, lng) VALUES (%s, %s, %s, %s, %s, %s)"
             cursor.execute(sql, (author_receive, store_receive, address_receive, tel_receive, lat_receive, lng_receive))
 
         # connection is not autocommit by default. So you must commit to save
@@ -51,7 +51,7 @@ def saving():
 @app.route('/map', methods=['GET'])
 def listing():
     name_receive = request.args.get('name_give')
-    return jsonify({'result': 'success', 'msg': '이 요청은 GET!'})
+    return jsonify({'result': 'success', 'msg': '⍤⃝𓂭  요청은 GET!'})
 
 
 if __name__ == '__main__':
