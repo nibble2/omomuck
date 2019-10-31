@@ -17,7 +17,7 @@ def home():
 def myList():
     return render_template('mylist.html', map_key=config.API_KEY['kakao_map_api'])
 
-# 찜하기 API
+# 찜하기 kAPI
 @app.route('/map', methods=['POST'])
 def saving():
     author_receive = request.form['author_give']
