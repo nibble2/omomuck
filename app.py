@@ -5,32 +5,30 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-
+host_name = config.DB_CONFIG['stores_host']
+port_name = config.DB_CONFIG['stores_port']
+user_name = config.DB_CONFIG['stores_user']
+pwd = config.DB_CONFIG['stores_passwd']
+db_name = config.DB_CONFIG['stores_db']
 # database 에 접근
 # database 를 사용하기 위한 cursor 를 세팅합니다.
-
-host_name = 'management-1.c8loxydvmsxa.ap-northeast-2.rds.amazonaws.com'
-user_name = 'root'
-pwd = '1234'
-db_name = 'omomuck'
-
 
 @app.route('/')
 def home():
     return render_template('index.html', map_key=config.API_KEY['kakao_map_api'])
 
 
-@app.route('/myList')
+@app.route('/list')
 def myList():
     return render_template('mylist.html', map_key=config.API_KEY['kakao_map_api'])
 
 
-@app.route('/food-search')
+@app.route('/search')
 def foodSearch():
     return render_template('food-search.html', map_key=config.API_KEY['kakao_map_api'])
 
 
-@app.route('/list', methods=['POST'])
+@app.route('/map', methods=['POST'])
 def saving():
     author_receive = request.form['author_give']
     store_receive = request.form['store_give']  # 가게 명
@@ -40,7 +38,7 @@ def saving():
     lng_receive = request.form['lng_give']  # 경도
 
     db = pymysql.connect(host=host_name,
-                         port=3306,
+                         port=port_name,
                          user=user_name,
                          passwd=pwd,
                          db=db_name,
@@ -57,10 +55,10 @@ def saving():
     return jsonify({'result': 'success', 'msg': '이 요청은 POST!'})
 
 
-@app.route('/list', methods=['GET'])
+@app.route('/map', methods=['GET'])
 def listing():
     db = pymysql.connect(host=host_name,
-                         port=3306,
+                         port=port_name,
                          user=user_name,
                          passwd=pwd,
                          db=db_name,
@@ -83,7 +81,7 @@ def deleting():
     store_give = request.args.get('store_give')
     # host ='my aws host ip'
     db = pymysql.connect(host=host_name,
-                         port=3306,
+                         port=port_name,
                          user=user_name,
                          passwd=pwd,
                          db=db_name,

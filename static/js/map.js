@@ -150,7 +150,7 @@
 
         $.ajax({
             type:"POST",
-            url:"/list",
+            url:"/map",
             data:{author_give: author, store_give:store, address_give:address, tel_give:tel, lat_give:lat, lng_give:lng},
             success: function(response){
                 if(response['result']=='success'){
