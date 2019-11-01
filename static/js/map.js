@@ -148,22 +148,21 @@
         let lat = x;
         let lng = y;
 
-        console.log(store);
-        console.log(address);
-        console.log(tel);
-        console.log(lat);
-        console.log(lng);
-
         $.ajax({
             type:"POST",
-            url:"/map",
+            url:"/list",
             data:{author_give: author, store_give:store, address_give:address, tel_give:tel, lat_give:lat, lng_give:lng},
             success: function(response){
-                console.log(response);
+                if(response['result']=='success'){
+                    alert('성공적으로 저장하였습니다.');
+                } else{
+                    alert('이미 추가된 항목입니다. My List를 확인하세요!');
+                }
+                console.log(response['result']);
             }
         })
     }
-
+    
     // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
     function addMarker(position, idx, title) {
         var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다

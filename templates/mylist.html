@@ -43,7 +43,7 @@
 	function listing(){
         $.ajax({
           type: "GET",
-          url:"/map?author_give=omomuck",
+          url:"/list?author_give=omomuck",
           data:{},
           success: function(response){
             if(response['result']=='success'){
