@@ -32,11 +32,11 @@
         					<td><button class="btn-map" onclick="marking('+lat+','+lng+',\''+store+'\')" type="button">지도보기</button></td>\
         					<td><button class="btn-remove" onclick="deleting(\''+store+'\')" type="button">제거</button></td>\
         					</tr>';
-	        $('#mylist').append(temp_html);
+	        $('#myList').append(temp_html);
     	}
 
 	$(document).ready(function(){
-        $('#mylist').html('');
+        $('#myList').html('');
         listing();
       });
 
@@ -129,7 +129,7 @@
         <th scope="col">제거</th>
     </tr>
     </thead>
-    <tbody id="mylist"></tbody>
+    <tbody id="myList"></tbody>
 </table>
 </body>
 </html>

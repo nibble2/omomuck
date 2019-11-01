@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="omomuck" />
+    <meta property="og:type" content="website" />
+    <!-- Css / change img path -->
+    <meta property="og:image" content="../static/images/op-img.jpg" />
+    <meta property="og:description" content="오늘 모 모글지 모를 땐 - 오늘 모 먹지" />
+    <!-- Twitter Theme -->
+    <meta name="twitter:widgets:theme" content="light">
+    <title>모 모글지 모를 때 - 오모먹</title>
+    <!-- Title &amp; Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/pavicon.png">
+    <meta name="description" content="오늘 모 모글지 모를 땐 - 오늘 모 먹지">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CHind+Madurai:400,500&amp;subset=latin-ext" rel="stylesheet">
+    <!-- Css / change css stylesheet code -->
+    <link rel="stylesheet" href="../static/css/core.min.css" />
+    <link rel="stylesheet" href="../static/css/skin.css" />
+    <link rel="stylesheet" href="../static/css/map.css" />
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body class="shop home-page" data-loader-type="full-width-bar">
+    <!-- Side Navigation Menu -->
+    <aside class="side-navigation-wrapper enter-right" data-no-scrollbar data-animation="push-in">
+        <div class="side-navigation-scroll-pane">
+            <div class="side-navigation-inner">
+                <div class="side-navigation-header">
+                    <div class="navigation-hide side-nav-hide">
+                        <a href="#">
+                            <span class="icon-cancel medium"></span>
+                        </a>
+                    </div>
+                </div>
+                <nav class="side-navigation nav-block">
+                    <ul>
+                        <li>
+                            <a href="food-search">맛집 검색</a>
+                        </li>
+                        <li>
+                            <a href="https://spartacodingclub.kr" target="_blank">코딩 맛집</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="side-navigation-footer">
+                    <p class="copyright no-margin-bottom">&copy; 2019 omomuck.</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- Side Navigation Menu End -->
+    <div class="wrapper reveal-side-navigation">
+        <div class="wrapper-inner">
+            <!-- Header -->
+            <header class="header header-absolute header-fixed-on-mobile header-transparent" data-helper-in-threshold="200" data-helper-out-threshold="500" data-sticky-threshold="200" data-bkg-threshold="100" data-compact-threshold="100">
+                <div class="header-inner">
+                    <div class="row nav-bar">
+                        <div class="column width-12 nav-bar-inner">
+                            <div class="logo">
+                                <div class="logo-inner">
+                                    <a href="/"><img src="../static/images/logo-dark.png" alt="omomuck" /></a>
+                                    <a href="/"><img src="../static/images/logo.png" alt="omomuck" /></a>
+                                </div>
+                            </div>
+                            <nav class="navigation nav-block secondary-navigation nav-right">
+                                <ul>
+                                    <li>
+                                    </li>
+                                    <li class="aux-navigation hide">
+                                        <!-- Aux Navigation -->
+                                        <a href="#" class="navigation-show side-nav-show nav-icon">
+                                            <span class="icon-menu"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <nav class="navigation nav-block primary-navigation nav-right">
+                                <!--Main Contents Menu-->
+                                <ul>
+                                    <li>
+                                        <a href="food-search">맛집 검색</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://spartacodingclub.kr" target="_blank">코딩 맛집</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Header End -->
+            <!-- Content -->
+            <div class="content clearfix reveal-footer">
+                <!-- Full Width Slider Section -->
+                <div class="section-block featured-media page-intro tm-slider-parallax-container">
+                    <div class="tm-slider-container full-width-slider" data-parallax data-parallax-fade-out data-animation="slide" data-scale-under="1140">
+                        <ul class="tms-slides">
+                            <li class="tms-slide" data-image data-force-fit data-overlay-bkg-color="#000000" data-overlay-bkg-opacity="0.0">
+                                <div class="tms-content">
+                                    <div class="tms-content-inner center">
+                                    </div>
+                                </div>
+                                <img data-src="../static/images/main/main-slide-2.jpg" data-retina-src="images/blank.png" alt="" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Map section -->
+                <div class="section-block" style="margin-bottom: 700px">
+                    <div class="row">
+                        <div class="column width-12">
+                            <!-- map//////////// start-->
+                            <div class="map_wrap">
+                                <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+                                <div id="menu_wrap" class="bg_white">
+                                    <div class="option">
+                                        <div>
+                                            <form onsubmit="searchPlaces(); return false;">
+                                                키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
+                                                <button type="submit">검색하기</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="section-block">
+                                        <div class="row">
+                                            <div class="column width-12" style="height: 500px; overflow: scroll">
+                                                <ul id="placesList"></ul>
+                                            </div>
+                                        </div>
+                                        <div id="pagination"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Content End -->
+            <!-- Footer -->
+            <footer class="footer footer-fixed footer-light with-border">
+                <div class="footer-top">
+                    <div class="row flex">
+                        <div class="column width-9">
+                            <div class="row two-columns-on-tablet">
+                                <!-- pc-footer -->
+                                <div class="pc-footer">
+                                    <div class="column width-3">
+                                        <div class="widget">
+                                            <h3 class="widget-title mb-30">스파르타코딩맛집</h3>
+                                            <ul>
+                                                <li><a href="https://spartacodingclub.kr" target="_blank">홈페이지</a></li>
+                                                <li><a href="https://blog.naver.com/spartacoding" target="_blank">블로그</a></li>
+                                                <li><a href="https://www.youtube.com/channel/UC2Fh3XoQYNYTba-cigq5cAA" target="_blank">유튜브</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="column width-3">
+                                        <div class="widget">
+                                            <h3 class="widget-title mb-30">맛집 탐방</h3>
+                                            <ul>
+                                                <li><a href="food-search">맛집 검색</a></li>
+                                                <li><a href="myList">나만의 맛집 리스트</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column width-3">
+                            <div class="widget right left-on-mobile">
+                                <div class="footer-logo">
+                                    <a href="index"><img src="../static/images/logo-footer.png" alt="omomuck" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="row">
+                        <div class="column width-12">
+                            <div class="footer-bottom-inner">
+                                <p class="copyright pull-left clear-float-on-mobile">&copy; Omomuck. All Rights Reserved.</p> <a href="#" class="scroll-to-top pull-right clear-on-mobile" data-no-hide>Back Top</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer End -->
+        </div>
+    </div>
+    <!-- Js -->
+    <script>
+    $(document).ready(function() {
+        $(document).bind("contextmenu", funciton(e) {
+            return false;
+        });
+    });
+    $(document)[0].oncontextmenu = funciton() { return false; }
+    $(document).mousedown(function(e) {
+        if (e.button == 2) {
+            alert('내용을 복사할 수 없습니다');
+            return false;
+        } else {
+            return true;
+        }
+    });
+    </script>
+    <!-- Js -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{map_key}}&libraries=services"></script>
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3JCAhNj6tVAO_LSb8M-AzMlidiT-RPAs"></script>
+    <script src="../static/js/timber.master.min.js"></script>
+    <script src="../static/js/map.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{map_key}}&libraries=services"></script>
+</body>
+
+</html>
