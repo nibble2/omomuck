@@ -10,8 +10,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('food-search.html', map_key=config.API_KEY['kakao_map_api'])
+    return render_template('index.html')
 
+@app.route('/search')
+def index():
+    return render_template('food-search.html', map_key=config.API_KEY['kakao_map_api'])
 
 @app.route('/list')
 def myList():
