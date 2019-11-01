@@ -17,4 +17,7 @@ https://whitepaek.tistory.com/16
 * mac에서 mysql-workbench 설치:
 https://devyurim.github.io/data%20base/mysql/2018/08/13/mysql-1.html
 
+* Rds 설치방법:
+https://ndb796.tistory.com/226
+(ALTER TABLE stores CONVERT TO character SET utf8;)
 

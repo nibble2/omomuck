@@ -54,7 +54,7 @@ def saving():
 @app.route('/map', methods=['GET'])
 def listing():
     name_receive = request.args.get('name_give')
-    return jsonify({'result': 'success', 'msg': '⍤⃝𓂭  요청은 GET!'})
+    return jsonify({'result': 'success', 'msg': '이  요청은 GET!'})
 
 
 if __name__ == '__main__':
