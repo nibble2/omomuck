@@ -22,27 +22,28 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{map_key}}"></script>
 
     <script type="text/javascript">
-	    function make_list(index,name,address,tel,lng,lat,user){
+	    function make_list(index,store,address,tel,lng,lat,author){
     		let temp_html='<tr>\
         					<td>'+index+'</td>\
-        					<td>'+name+'</td>\
+        					<td>'+store+'</td>\
         					<td>'+address+'</td>\
         					<td>'+tel+'</td>\
         					<td>'+author+'</td>\
-        					<td><button class="btn-map" onclick="marking('+lat+','+lng+',\''+name+'\')" type="button">지도보기</button></td>\
+        					<td><button class="btn-map" onclick="marking('+lat+','+lng+',\''+store+'\')" type="button">지도보기</button></td>\
+        					<td><button class="btn-remove" onclick="deleting(\''+store+'\')" type="button">제거</button></td>\
         					</tr>';
-	        $('#mylist').append(temp_html);
+	        $('#myList').append(temp_html);
     	}
 
 	$(document).ready(function(){
-        $('#mylist').html('');
+        $('#myList').html('');
         listing();
       });
 
 	function listing(){
         $.ajax({
           type: "GET",
-          url:"/map?name_give=omomuck",
+          url:"/map?author_give=omomuck",
           data:{},
           success: function(response){
             if(response['result']=='success'){
@@ -58,6 +59,19 @@
         })
       }
 	
+	function deleting(store){
+		alert(store+"은(는) 목록에서 제거되었습니다!");
+        $.ajax({
+            type:"POST",
+            url:"/delete?store_give="+store,
+            data:{},
+            success: function(response){
+                console.log(response);
+                window.location.reload();
+            }
+        })
+    }
+
 	function marking(lat, lng, name) {   
     	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
     	// 이동할 위도 경도 위치를 생성합니다 
@@ -72,8 +86,7 @@
 
 		// 마커를 생성합니다
 		var marker = new kakao.maps.Marker({
-    		position: markerPosition,
-    		text: '상호명: '+name
+    		position: markerPosition
 		});
 		// 마커가 지도 위에 표시되도록 설정합니다
 		marker.setMap(map);
@@ -112,10 +125,11 @@
         <th scope="col">address</th>
         <th scope="col">tel</th>
         <th scope="col">user</th>
-        <th scope="col">button</th>
+        <th scope="col">위치</th>
+        <th scope="col">제거</th>
     </tr>
     </thead>
-    <tbody id="mylist"></tbody>
+    <tbody id="myList"></tbody>
 </table>
 </body>
 </html>
