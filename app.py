@@ -8,6 +8,7 @@ app = Flask(__name__)
 # database 에 접근
 # database 를 사용하기 위한 cursor 를 세팅합니다.
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -48,13 +49,6 @@ def saving():
     finally:
         db.close()
     return jsonify({'result': 'success', 'msg': '이 요청은 POST!'})
-
-
-# 찜한 리스트 불러오기 API
-@app.route('/map', methods=['GET'])
-def listing():
-    name_receive = request.args.get('name_give')
-    return jsonify({'result': 'success', 'msg': '이  요청은 GET!'})
 
 
 if __name__ == '__main__':
