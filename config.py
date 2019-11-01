@@ -1,7 +1,7 @@
 #config.py
 
 API_KEY = {
-    'kakao_map_api': 'fdc9dfae2cba344c2ba1f75e9e580226'
+    'kakao_map_api': '5215cc8cb8bb1c5cf67723d896c27b7b'
 }
 
 DB_CONFIG = {
