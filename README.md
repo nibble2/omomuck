@@ -36,5 +36,5 @@ https://ndb796.tistory.com/226
 (ALTER TABLE stores CONVERT TO character SET utf8;)
 
 ### 함께 한 사람
-오현택: https://github.com/tax1116
+오현택: https://github.com/tax1116  
 김태범: https://github.com/perikles7777
