@@ -5,3 +5,4 @@ config.py
 /static/css
 /static/images
 /static/fonts
+__pycache__
