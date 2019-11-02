@@ -27,6 +27,9 @@ def myList():
 def foodSearch():
     return render_template('food-search.html', map_key=config.API_KEY['kakao_map_api'])
 
+@app.route('/oauth')
+def login():
+    return render_template('oauth.html')
 
 @app.route('/map', methods=['POST'])
 def saving():
